@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>天际之城 · 城市建造</title>
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'><text y='.9em' font-size='90'>🏙️</text></svg>" />
+  <link rel="stylesheet" href="/src/style.css" />
+</head>
+<body>
+  <div id="app"></div>
+
+  <!-- 加载 / 开始界面 -->
+  <div id="start" class="screen">
+    <div class="start-card">
+      <div class="logo">🏙️</div>
+      <h1>天际之城</h1>
+      <p class="sub">在河畔平原上，从一条公路开始，建造属于你的天际线</p>
+      <div id="loading" class="loading"><div class="bar"><i></i></div><span>正在生成世界…</span></div>
+      <div id="start-buttons" class="start-buttons hidden">
+        <button id="btn-continue" class="btn primary hidden">继续游戏</button>
+        <button id="btn-new" class="btn primary">新的城市</button>
+      </div>
+      <div class="howto">
+        <div><b>右键拖动</b> 平移</div><div><b>中键拖动 / Q E</b> 旋转</div>
+        <div><b>滚轮</b> 缩放</div><div><b>WASD</b> 移动</div>
+        <div><b>空格</b> 暂停</div><div><b>Esc / 右键</b> 取消工具</div>
+      </div>
+    </div>
+  </div>
+
+  <div id="hud" class="hidden">
+    <!-- 顶部栏 -->
+    <div id="topbar">
+      <div class="brand">🏙️ <span id="city-name">天际之城</span></div>
+      <div class="stat money" id="stat-money" title="点击查看预算"><i>💰</i><b id="money">¥0</b><small id="money-delta"></small></div>
+      <div class="stat" title="人口"><i>👥</i><b id="pop">0</b></div>
+      <div class="stat" title="市民幸福度"><i id="happy-icon">😊</i><b id="happy">0%</b></div>
+      <div class="stat" title="电力：用电 / 发电"><i>⚡</i><b id="power">0/0</b></div>
+      <div class="stat date"><i>🕒</i><b id="clock">08:00</b><small id="date"></small></div>
+      <div class="speed" id="speed">
+        <button data-s="0" title="暂停 (空格)">⏸</button>
+        <button data-s="1" title="正常速度 (1)">▶</button>
+        <button data-s="2" title="快速 (2)">▶▶</button>
+        <button data-s="3" title="极速 (3)">▶▶▶</button>
+      </div>
+      <div class="top-right">
+        <button class="icon-btn" id="btn-save" title="保存">💾</button>
+        <button class="icon-btn" id="btn-sound" title="音效">🔊</button>
+        <button class="icon-btn" id="btn-quality" title="画质">✨</button>
+        <button class="icon-btn" id="btn-menu" title="菜单">☰</button>
+      </div>
+    </div>
+
+    <!-- 目标 -->
+    <div id="quests" class="panel">
+      <div class="panel-title">🎯 城市目标 <span id="milestone-name"></span></div>
+      <div id="milestone-bar" class="mbar"><i></i><span></span></div>
+      <ul id="quest-list"></ul>
+    </div>
+
+    <!-- 信息面板 -->
+    <div id="info" class="panel hidden"></div>
+
+    <!-- 预算面板 -->
+    <div id="budget" class="panel hidden"></div>
+
+    <!-- 视图叠加 -->
+    <div id="views">
+      <button data-v="land" title="地价">💎<span>地价</span></button>
+      <button data-v="pollution" title="污染">☁️<span>污染</span></button>
+      <button data-v="service" title="服务覆盖">🛡️<span>服务</span></button>
+    </div>
+
+    <!-- 底部工具栏 -->
+    <div id="bottom">
+      <div id="demand" title="需求柱：R 住宅 / C 商业 / I 工业。柱子越高，越需要划这类区域">
+        <div class="d r"><i></i><span>R</span></div>
+        <div class="d c"><i></i><span>C</span></div>
+        <div class="d i"><i></i><span>I</span></div>
+      </div>
+      <div id="dock">
+        <div id="subpanel" class="hidden"></div>
+        <div id="toolbar"></div>
+      </div>
+    </div>
+
+    <div id="toasts"></div>
+    <div id="tooltip" class="hidden"></div>
+  </div>
+
+  <div id="modal" class="screen hidden"></div>
+
+  <script type="module" src="/src/main.js"></script>
+</body>
+</html>
